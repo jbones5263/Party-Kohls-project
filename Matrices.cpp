@@ -2,8 +2,8 @@
 #pragma once
 #pragma once
 
-#include "Particle-2.h"
-#include "Matrices-5.h"
+#include "Particle.h"
+#include "Matrices.h"
 
 
 ///Construct a matrix of the specified size.
@@ -62,10 +62,35 @@ ostream& operator<<(ostream& os, const Matrix& a)
     sin(theta)   cos(theta)
     */
     ///theta represents the angle of rotation in radians, counter-clockwise
-RotationMatrix::RotationMatrix(double theta)
+RotationMatrix::RotationMatrix(double theta) 
 {
     //DO ME
 }
 
+///Call the parent constructor to create a 2x2 matrix
+     ///Then assign each element as follows:
+     /*
+     scale   0
+     0       scale
+     */
+     ///scale represents the size multiplier
+ScalingMatrix::ScalingMatrix(double scale)
+{
+    //DO ME
+}
+
+///Call the parent constructor to create a 2xn matrix
+      ///Then assign each element as follows:
+      /*
+      xShift  xShift  xShift  ...
+      yShift  yShift  yShift  ...
+      */
+      ///paramaters are xShift, yShift, and nCols
+      ///nCols represents the number of columns in the matrix
+      ///where each column contains one (x,y) coordinate pair
+TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols)
+{
+    //DO ME
+}
 
 
