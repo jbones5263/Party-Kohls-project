@@ -1,3 +1,4 @@
+#pragma once
 #include "Particle.h"
 
 
@@ -148,35 +149,33 @@ void Particle::unitTests()
 // the c0de we added 
 
 
-Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
-    :Drawable()
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable()
 {
     cout << "WEEE" << endl;
 }
-
-void draw(RenderTarget& target, RenderStates states)
+void Particle::draw(RenderTarget& target, RenderStates states)
 {
     //DO ME
 }
 
-void update(float dt)
+void Particle::update(float dt)
 {
     //DO ME
 }
 
 //Private function declaration of independance
 
-void rotate(double theta)
+void Particle::rotate(double theta)
 {
     //DO ME
 }
 
-void scale(double c)
+void Particle::scale(double c)
 {
     //DO ME
 }
 
-void translate(double xShift, double yShift)
+void Particle::translate(double xShift, double yShift)
 {
     //DO ME
 }

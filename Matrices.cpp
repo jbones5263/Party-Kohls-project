@@ -5,8 +5,8 @@
 #include "Particle.h"
 #include "Matrices.h"
 
-namespace Matrices
-{
+//namespace Matrices
+//{
 	Matrix::Matrix(int _rows, int _cols)
 	{
 		rows = _rows;
@@ -140,4 +140,55 @@ namespace Matrices
 		}
 		return os;
 	}
-};
+//};
+
+	
+
+///2D rotation matrix
+	///usage:  A = R * A rotates A theta radians counter-clockwise
+	///Call the parent constructor to create a 2x2 matrix
+	///Then assign each element as follows:
+	/*
+	cos(theta)  -sin(theta)
+	sin(theta)   cos(theta)
+	*/
+	///theta represents the angle of rotation in radians, counter-clockwise
+	RotationMatrix::RotationMatrix(double theta) :Matrix()
+	{
+		//DO ME
+	}
+
+///2D scaling matrix
+///usage:  A = S * A expands or contracts A by the specified scaling factor
+
+
+	///Call the parent constructor to create a 2x2 matrix
+	///Then assign each element as follows:
+	/*
+	scale   0
+	0       scale
+	*/
+	///scale represents the size multiplier
+	ScalingMatrix::ScalingMatrix(double scale)
+	{
+		//DO ME
+	}
+
+
+///2D Translation matrix
+///usage:  A = T + A will shift all coordinates of A by (xShift, yShift)
+
+
+	///Call the parent constructor to create a 2xn matrix
+	///Then assign each element as follows:
+	/*
+	xShift  xShift  xShift  ...
+	yShift  yShift  yShift  ...
+	*/
+	///paramaters are xShift, yShift, and nCols
+	///nCols represents the number of columns in the matrix
+	///where each column contains one (x,y) coordinate pair
+	TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols)
+	{
+		//DO ME
+	}

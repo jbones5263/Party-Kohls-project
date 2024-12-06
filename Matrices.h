@@ -7,8 +7,8 @@
 #include <iomanip>
 using namespace std;
 
-namespace Matrices
-{
+//namespace Matrices
+//{
     class Matrix
     {
         public:
@@ -112,6 +112,6 @@ namespace Matrices
             ///where each column contains one (x,y) coordinate pair
             TranslationMatrix(double xShift, double yShift, int nCols);
     };
-}
+//}
 
 #endif // MATRIX_H_INCLUDED
