@@ -144,3 +144,38 @@ void Particle::unitTests()
 
     cout << "Score: " << score << " / 7" << endl;
 }
+
+// the c0de we added 
+
+
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
+{
+    //DO ME
+}
+
+void draw(RenderTarget& target, RenderStates states)
+{
+    //DO ME
+}
+
+void update(float dt)
+{
+    //DO ME
+}
+
+//Private function declaration of independance
+
+void rotate(double theta)
+{
+    //DO ME
+}
+
+void scale(double c)
+{
+    //DO ME
+}
+
+void translate(double xShift, double yShift)
+{
+    //DO ME
+}
