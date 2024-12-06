@@ -149,8 +149,9 @@ void Particle::unitTests()
 
 
 Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
+    :Drawable()
 {
-    //DO ME
+    cout << "WEEE" << endl;
 }
 
 void draw(RenderTarget& target, RenderStates states)
