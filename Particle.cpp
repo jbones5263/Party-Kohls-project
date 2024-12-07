@@ -151,9 +151,37 @@ void Particle::unitTests()
 
 
 
-Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable() 
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable()
 {
-    m_A(2, numPoints);
+    m_A(2, numPoints); //SUPOSEDLY, this needs to be constructed before Particle::Particle is constructed?! idk why it wont work though when above
+
+    m_ttl = TTL;
+    m_numPoints = numPoints;
+    m_radiansPerSec = (float)rand() / (RAND_MAX) * M_PI;
+
+    m_cartesianPlane.setCenter(0, 0);
+    m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
+    m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
+
+    m_vx = rand() % 500 + 100;  //VELOCITIES HERE
+    m_vy = rand() % 500 + 100;
+
+    m_color1 = Color::White;
+    m_color2 = Color::Red;        // COLORS (Possibly randomize these here)
+
+    double theta = (float)rand() / (RAND_MAX)* (M_PI / 2);
+    double dtheta = 2 * M_PI/(numPoints - 1);
+
+    for (int j = 0; j < numPoints; j++)
+    {
+        double r = rand() % 60 + 20;   //ARM SIZE
+        double dx = r * cos(theta);
+        double dy = r * sin(theta);
+        m_A(0, j) = m_centerCoordinate.x + dx;
+        m_A(1, j) = m_centerCoordinate.y + dy;
+        theta += dtheta;
+    }
+
     cout << "Partical Object Created!" << endl;
 }
 
