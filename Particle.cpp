@@ -1,5 +1,6 @@
 #pragma once
 #include "Particle.h"
+#include "Matrices.h"
 
 
 bool Particle::almostEqual(double a, double b, double eps)
@@ -149,11 +150,14 @@ void Particle::unitTests()
 // the c0de we added 
 
 
-Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable()
+
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable() 
 {
-    cout << "WEEE" << endl;
+    m_A(2, numPoints);
+    cout << "Partical Object Created!" << endl;
 }
-void Particle::draw(RenderTarget& target, RenderStates states)
+
+void Particle::draw(RenderTarget& target, RenderStates states) const
 {
     //DO ME
 }

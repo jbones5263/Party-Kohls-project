@@ -7,13 +7,14 @@
 #include <iomanip>
 using namespace std;
 
-//namespace Matrices
-//{
+namespace Matrices
+{
     class Matrix
     {
         public:
             ///Construct a matrix of the specified size.
             ///Initialize each element to 0.
+            Matrix();
             Matrix(int _rows, int _cols);
 
             ///************************************
@@ -112,6 +113,6 @@ using namespace std;
             ///where each column contains one (x,y) coordinate pair
             TranslationMatrix(double xShift, double yShift, int nCols);
     };
-//}
+}
 
 #endif // MATRIX_H_INCLUDED

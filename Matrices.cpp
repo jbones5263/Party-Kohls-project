@@ -5,8 +5,12 @@
 #include "Particle.h"
 #include "Matrices.h"
 
-//namespace Matrices
-//{
+namespace Matrices
+{
+	Matrix::Matrix()
+	{
+		cout << "this isnt supposed to show up. Defalt Matrix constrcutor called" << endl;
+	}
 	Matrix::Matrix(int _rows, int _cols)
 	{
 		rows = _rows;
@@ -140,7 +144,7 @@
 		}
 		return os;
 	}
-//};
+};
 
 	
 
@@ -153,7 +157,7 @@
 	sin(theta)   cos(theta)
 	*/
 	///theta represents the angle of rotation in radians, counter-clockwise
-	RotationMatrix::RotationMatrix(double theta) :Matrix()
+	RotationMatrix::RotationMatrix(double theta) :Matrix(2, 2)
 	{
 		//DO ME
 	}
@@ -169,7 +173,7 @@
 	0       scale
 	*/
 	///scale represents the size multiplier
-	ScalingMatrix::ScalingMatrix(double scale)
+	ScalingMatrix::ScalingMatrix(double scale) :Matrix(2, 2)
 	{
 		//DO ME
 	}
@@ -188,7 +192,7 @@
 	///paramaters are xShift, yShift, and nCols
 	///nCols represents the number of columns in the matrix
 	///where each column contains one (x,y) coordinate pair
-	TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols)
+	TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) :Matrix(2, nCols)
 	{
 		//DO ME
 	}
