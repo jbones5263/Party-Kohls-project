@@ -72,16 +72,16 @@ using namespace std;
 	{
 		//DO ME
 		Clock c;
-		//Time t = c.getElapsedTime();
+		Time t = c.getElapsedTime();
 		cout << "Starting Particle unit tests..." << endl;
-		Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
+		Particle p(m_Window, 8, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
 		p.unitTests();
 		cout << "Unit tests complete.  Starting engine..." << endl;
-		while (m_Window.isOpen())
-		{
+		//while (m_Window.isOpen())
+		//{
 			//t = c.restart();
-			input();
-			update(c.restart().asSeconds());
-			draw();
-		}
+		//	input();
+		//	update(c.restart().asSeconds());
+		//	draw();
+		//}
 	}

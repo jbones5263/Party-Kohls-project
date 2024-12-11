@@ -151,9 +151,9 @@ void Particle::unitTests()
 
 
 
-Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable()
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable(), m_A(2, numPoints)
 {
-    m_A(2, numPoints); //SUPOSEDLY, this needs to be constructed before Particle::Particle is constructed?! idk why it wont work though when above
+     //SUPOSEDLY, this needs to be constructed before Particle::Particle is constructed?! idk why it wont work though when above
 
     m_ttl = TTL;
     m_numPoints = numPoints;
