@@ -12,8 +12,9 @@ int main()
 	ScalingMatrix S(10);
 	TranslationMatrix T(2, 5, 4);
 	cout << R << S << T << endl;
-
+	int num;
+	cin >> num;
 	
 
-	return 0;
+	return 1;
 }
