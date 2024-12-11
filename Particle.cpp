@@ -203,22 +203,44 @@ void Particle::draw(RenderTarget& target, RenderStates states) const
 
 void Particle::update(float dt)
 {
-    //DO ME
+    //DONE
+    m_ttl -= dt;
+    rotate(dt * m_radiansPerSec);
+    scale(SCALE);
+    float dx = m_vx * dt;
+    float dy = G * dt;
+    dy = m_vy * dt;
+    translate(dx, dy);
 }
 
 //Private function declaration of independance
 
 void Particle::rotate(double theta)
 {
-    //DO ME
+    //DONE
+    Vector2f temp = m_centerCoordinate;
+    translate(-m_centerCoordinate.x, - m_centerCoordinate.y);
+    RotationMatrix R(theta);
+    m_A = R * m_A;
+    translate(temp.x, temp.y);
 }
 
 void Particle::scale(double c)
 {
-    //DO ME
+    //DONE
+    Vector2f temp = m_centerCoordinate;
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    ScalingMatrix S(c);
+    m_A = S * m_A;
+    translate(temp.x, temp.y);
 }
 
 void Particle::translate(double xShift, double yShift)
 {
-    //DO ME
+    //DONE
+    TranslationMatrix T(xShift, yShift, m_numPoints);
+    m_A = T + m_A;
+    m_centerCoordinate.x += xShift;
+    m_centerCoordinate.y += yShift;
+
 }
