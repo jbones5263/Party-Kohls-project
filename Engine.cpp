@@ -15,7 +15,9 @@ using namespace std;
 	// Private functions for internal use only
 	void Engine::input()
 	{
-		//DO ME
+		//DONE
+		int numVertices = rand() % 26 + 25;
+		int numParticles = rand() % 11 + 5;
 		Event e;
 		while (m_Window.pollEvent(e))
 		{
@@ -30,7 +32,8 @@ using namespace std;
 					cout << "left button pressed :)" << endl;
 					for (int i = 0; i < 5; i++)
 					{
-						Particle p(m_Window, 25, { e.mouseButton.x, e.mouseButton.y });
+						Particle p(m_Window, numVertices, { e.mouseButton.x, e.mouseButton.y });
+						m_particles.push_back(p);
 					}
 				}
 				if (e.mouseButton.button == Mouse::Right)
@@ -38,9 +41,16 @@ using namespace std;
 					cout << "right button pressed (:" << endl;
 					for (int i = 0; i < 3; i++)
 					{
-						Particle p(m_Window, 15, { e.mouseButton.x, e.mouseButton.y });
+						Particle p(m_Window, numVertices, { e.mouseButton.x, e.mouseButton.y });
+						m_particles.push_back(p);
 					}
 				}
+			}
+			if (Keyboard::isKeyPressed(Keyboard::E))   //this should generate only 1 star while 'E' is being held
+			{
+				cout << "E pressed :D" << endl;
+				Particle p(m_Window, numVertices, Mouse::getPosition(m_Window));
+				m_particles.push_back(p);
 			}
 		}
 	}
@@ -48,40 +58,52 @@ using namespace std;
 	void Engine::update(float dtAsSeconds)
 	{
 		//DO ME
+		for (int i = 0; i < m_particles.size();)
+		{
+			if (m_particles.at(i).getTTL() > 0.0)
+			{
+				m_particles.at(i).update(dtAsSeconds);
+				i++;
+			}
+			else
+			{
+				m_particles.erase(m_particles.begin() + i);
+			}
+		}
 	}
 
 	void Engine::draw()
 	{
-		//DO ME
+		//DONE
 		m_Window.clear();
 		for (int i = 0; i < m_particles.size(); i++)
 		{
 			m_Window.draw(m_particles.at(i));
 		}
+		m_Window.display();
 	}
 
 	// The Engine constructor
 	Engine::Engine()
 	{
-		//DO ME
-		m_Window.create(VideoMode{ 960,520 }, "Particles !!!! :D", Style::Default);
+		//DONE
+		m_Window.create(VideoMode{ 1920,1080 }, "Particles !!!! :D", Style::Default);
 	}
 
 	// Run will call all the private functions
 	void Engine::run()
 	{
-		//DO ME
+		//DONE
 		Clock c;
-		Time t = c.getElapsedTime();
 		cout << "Starting Particle unit tests..." << endl;
 		Particle p(m_Window, 8, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
 		p.unitTests();
 		cout << "Unit tests complete.  Starting engine..." << endl;
-		//while (m_Window.isOpen())
-		//{
-			//t = c.restart();
-		//	input();
-		//	update(c.restart().asSeconds());
-		//	draw();
-		//}
+		while (m_Window.isOpen())
+		{
+			float dtAsSeconds = c.restart().asSeconds();
+			input();
+			update(dtAsSeconds);
+			draw();
+		}
 	}

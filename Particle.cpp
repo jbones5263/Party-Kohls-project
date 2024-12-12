@@ -2,7 +2,6 @@
 #include "Particle.h"
 #include "Matrices.h"
 
-
 bool Particle::almostEqual(double a, double b, double eps)
 {
 	return fabs(a - b) < eps;
@@ -153,8 +152,6 @@ void Particle::unitTests()
 
 Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) :Drawable(), m_A(2, numPoints)
 {
-     //SUPOSEDLY, this needs to be constructed before Particle::Particle is constructed?! idk why it wont work though when above
-
     m_ttl = TTL;
     m_numPoints = numPoints;
     m_radiansPerSec = (float)rand() / (RAND_MAX) * M_PI;
@@ -166,8 +163,10 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     m_vx = rand() % 500 + 100;  //VELOCITIES HERE
     m_vy = rand() % 500 + 100;
 
-    m_color1 = Color::White;
-    m_color2 = Color::Red;        // COLORS (Possibly randomize these here)
+    m_color1.r = rand() % 255;
+    m_color1.g = rand() % 255;
+    m_color1.b = rand() % 255;
+    m_color2 = Color::White;
 
     double theta = (float)rand() / (RAND_MAX)* (M_PI / 2);
     double dtheta = 2 * M_PI/(numPoints - 1);
@@ -181,24 +180,22 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
         m_A(1, j) = m_centerCoordinate.y + dy;
         theta += dtheta;
     }
-
     cout << "Partical Object Created!" << endl;
 }
 
-void Particle::draw(RenderTarget& target, RenderStates states) const
+void Particle::draw(RenderTarget& target, RenderStates states) const 
 {
     //DONE
     VertexArray lines(TriangleFan, m_numPoints + 1);
     Vector2i center = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
-    lines[0].position = { float(center.x), float(center.y) };
+    lines[0].position = Vector2f(center);
     lines[0].color = m_color1;
     for (int j = 1; j <= m_numPoints; j++)
-    {   //POSIBILITY FOR ERROR HERE
-        lines[j].position = static_cast<Vector2f>(target.mapCoordsToPixel(Vector2f{ 0, float(m_A(0, j - 1)) }, m_cartesianPlane));
+    {   
+        lines[j].position = sf::Vector2f(target.mapCoordsToPixel(Vector2f(m_A(0, j-1), m_A(1, j-1)), m_cartesianPlane));
         lines[j].color = m_color2;
     }
     target.draw(lines);
-   
 }
 
 void Particle::update(float dt)
@@ -208,8 +205,8 @@ void Particle::update(float dt)
     rotate(dt * m_radiansPerSec);
     scale(SCALE);
     float dx = m_vx * dt;
-    float dy = G * dt;
-    dy = m_vy * dt;
+    m_vy -= G * dt;
+    float dy = m_vy * dt;
     translate(dx, dy);
 }
 
