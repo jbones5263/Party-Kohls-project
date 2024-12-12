@@ -30,7 +30,7 @@ using namespace std;
 				if (e.mouseButton.button == Mouse::Left)
 				{
 					cout << "left button pressed :)" << endl;
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < numParticles; i++)
 					{
 						Particle p(m_Window, numVertices, { e.mouseButton.x, e.mouseButton.y });
 						m_particles.push_back(p);
@@ -39,7 +39,7 @@ using namespace std;
 				if (e.mouseButton.button == Mouse::Right)
 				{
 					cout << "right button pressed (:" << endl;
-					for (int i = 0; i < 3; i++)
+					for (int i = 0; i < numParticles; i++)
 					{
 						Particle p(m_Window, numVertices, { e.mouseButton.x, e.mouseButton.y });
 						m_particles.push_back(p);
