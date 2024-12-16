@@ -165,6 +165,9 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     m_vx = rand() % 500 + 100;  //VELOCITIES HERE
     m_vy = rand() % 500 + 100;
 
+    int randNum = rand() % 2;
+    if (randNum == 0) { m_vx *= -1; }
+
     m_color1.r = rand() % 255;
     m_color1.g = rand() % 255;
     m_color1.b = rand() % 255;
@@ -212,14 +215,14 @@ void Particle::update(float dt)
     translate(dx, dy);
 }
 
-//Private function declaration of independance
+//Private function declaration of independence
 
 void Particle::rotate(double theta)
 {
     //DONE
     Vector2f temp = m_centerCoordinate;
     translate(-m_centerCoordinate.x, - m_centerCoordinate.y);
-    RotationMatrix R(theta);
+    RotationMatrix R(theta * rnum);
     m_A = R * m_A;
     translate(temp.x, temp.y);
 }
