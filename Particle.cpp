@@ -155,6 +155,8 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     m_ttl = TTL;
     m_numPoints = numPoints;
     m_radiansPerSec = (float)rand() / (RAND_MAX) * M_PI;
+    if ((rand() % 2) == 0) { rnum = -1; }
+    else if ((rand() % 2) == 1) { rnum = 1; }
 
     m_cartesianPlane.setCenter(0, 0);
     m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
@@ -207,20 +209,20 @@ void Particle::update(float dt)
     m_ttl -= dt;
     rotate(dt * m_radiansPerSec);
     scale(SCALE);
-    float dx = m_vx * dt;
+    float dx = m_vx * dt * rnum;
     m_vy -= G * dt;
     float dy = m_vy * dt;
     translate(dx, dy);
 }
 
-//Private function declaration of independance
+//Private function declaration of independence
 
 void Particle::rotate(double theta)
 {
     //DONE
     Vector2f temp = m_centerCoordinate;
     translate(-m_centerCoordinate.x, - m_centerCoordinate.y);
-    RotationMatrix R(theta);
+    RotationMatrix R(theta * rnum);
     m_A = R * m_A;
     translate(temp.x, temp.y);
 }
