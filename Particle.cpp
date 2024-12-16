@@ -222,7 +222,7 @@ void Particle::rotate(double theta)
     //DONE
     Vector2f temp = m_centerCoordinate;
     translate(-m_centerCoordinate.x, - m_centerCoordinate.y);
-    RotationMatrix R(theta * rnum);
+    RotationMatrix R(theta);
     m_A = R * m_A;
     translate(temp.x, temp.y);
 }
